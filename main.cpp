@@ -39,7 +39,7 @@ int main(void) {
   monsterAgi = 5;
 
   t = time(NULL);
-  srandom((unsigned int)t ^ (unsigned int)getpid());
+  srandom(static_cast<unsigned int>(t) ^ static_cast<unsigned int>(getpid()));
   monsterHp = std::rand() % 50 + 60;
   hp = std::rand() % 20 + 80;
 
