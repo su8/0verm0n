@@ -45,9 +45,7 @@ int main(void) {
 
   while (hp > 0 || monsterHp > 0) {
     std::cout << "What do you want to do?\n1 - Normal Attack\n2 - Advanced Attack\n3 - Defensive moves\n" << std::flush;
-    do {
-      std::cin >> choice;
-    } while (choice > 3 || choice < 1);
+    do { std::cin >> choice; } while (choice > 3 || choice < 1);
 
     adjustHumanAndMonster(choice, 1);
     adjustHumanAndMonster(std::rand() % 3, 0);
@@ -67,9 +65,7 @@ int main(void) {
 
     std::cout << "The monster now have " << monsterHp << " hp left.\n" << std::flush;
     hurt = (monsterAtk - agi) - (def / monsterAtk);
-    if (hurt < 0) {
-      hurt = 0;
-    }
+    if (hurt < 0) { hurt = 0; }
     hp -= hurt;
     std::cout << "The monster hit you for " << hurt << " damage.\n" << std::flush;
     if (hp < 1) {
@@ -92,9 +88,6 @@ static void adjustHumanAndMonster(int choice, int HumanEntry) {
   static std::reference_wrapper<int> HumanVars[] = { atk, def, agi };
   static std::reference_wrapper<int> MonsterVars[] = { monsterAtk, monsterDef, monsterAgi };
 
-  if (HumanEntry == 1) {
-    for (auto &z : HumanVars) { z.get() = arr[x++]; }
-    return;
-  }
+  if (HumanEntry == 1) { for (auto &z : HumanVars) { z.get() = arr[x++]; } return; }
   for (auto &z : MonsterVars) { z.get() = arr[x++]; }
 }
