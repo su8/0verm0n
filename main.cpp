@@ -26,7 +26,7 @@ MA 02110-1301, USA.
 
 int monsterHp, hp, atk, def, monsterAtk, monsterDef, hurt, monsterHurt, agi, monsterAgi;
 
-static void adjustHumanAndMonster(int choice, int firstEntry);
+static void adjustHumanAndMonster(int choice, int HumanEntry);
 
 int main(void) {
   time_t t;
