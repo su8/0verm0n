@@ -20,6 +20,8 @@ MA 02110-1301, USA.
 #include <ctime>
 #include <cstdlib>
 #include <string>
+#include <cstring>
+#include <unistd.h>
 
 int mhp, hp, atk, def, matk, mdef, hurt, mhurt, agi, magi;
 
@@ -27,6 +29,7 @@ static void adjustHuman(int choice);
 static void adjustMonster(int choice);
 
 int main(void) {
+  time_t t;
   int choice;
   atk = 10;
   def = 15;
@@ -35,10 +38,13 @@ int main(void) {
   mdef = 15;
   magi = 5;
 
-  srand((unsigned int)time(0));
+  t = time(NULL);
+
+  srandom((unsigned int)t ^ (unsigned int)getpid());
   mhp = std::rand() % 50 + 60;
   hp = std::rand() % 20 + 80;
   std::cout << "You start.\n==========\n" << std::flush;
+
   while (hp > 0 || mhp > 0) {
     std::cout << "What do you want to do?\n1 - Normal Attack\n2 - Advanced Attack\n3 - Defensive moves\n" << std::flush;
     do {
