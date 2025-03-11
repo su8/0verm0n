@@ -77,9 +77,9 @@ int main(void) {
 static void adjustHumanAndMonster(int choice, int HumanEntry) {
   int x = 0;
   static int arr[] = {
-    rand() % (choice == 1) ? 20 + 10 : ((choice == 2) ? 5 + 10 : 10 + 10),
-    rand() % (choice == 1) ? 10 + 10 : ((choice == 2) ? 10 + 10 : 20 + 10),
-    rand() % (choice == 1) ? 5 : ((choice == 2) ? 15  : 5)
+    std::rand() % (choice == 1) ? 20 + 10 : ((choice == 2) ? 5 + 10 : 10 + 10),
+    std::rand() % (choice == 1) ? 10 + 10 : ((choice == 2) ? 10 + 10 : 20 + 10),
+    std::rand() % (choice == 1) ? 5 : ((choice == 2) ? 15  : 5)
   };
   static std::reference_wrapper<int> HumanVars[] = { atk, def, agi };
   static std::reference_wrapper<int> MonsterVars[] = { monsterAtk, monsterDef, monsterAgi };
