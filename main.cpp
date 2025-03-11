@@ -22,11 +22,11 @@ MA 02110-1301, USA.
 #include <string>
 #include <cstring>
 #include <unistd.h>
+#include <functional>
 
 int monsterHp, hp, atk, def, monsterAtk, monsterDef, hurt, monsterHurt, agi, monsterAgi;
 
-static void adjustHuman(int choice);
-static void adjustMonster(int choice);
+static void adjustHumanAndMonster(int choice, int firstEntry);
 
 int main(void) {
   time_t t;
@@ -49,8 +49,8 @@ int main(void) {
       std::cin >> choice;
     } while (choice > 3 || choice < 1);
 
-    adjustHuman(choice);
-    adjustMonster(std::rand() % 3);
+    adjustHumanAndMonster(choice, 1);
+    adjustHumanAndMonster(std::rand() % 3, 0);
 
     monsterHurt = (atk - monsterAgi) - (monsterDef / atk);
     if (monsterHurt < 0) {
@@ -82,14 +82,19 @@ int main(void) {
   return EXIT_SUCCESS;
 }
 
-static void adjustHuman(int choice) {
-  atk = rand() % (choice == 1) ? 20 + 10 : ((choice == 2) ? 5 + 10 : 10 + 10);
-  def = rand() % (choice == 1) ? 10 + 10 : ((choice == 2) ? 10 + 10 : 20 + 10);
-  agi = rand() % (choice == 1) ? 5 : ((choice == 2) ? 15  : 5);
-}
+static void adjustHumanAndMonster(int choice, int HumanEntry) {
+  int x = 0;
+  static int arr[] = {
+    rand() % (choice == 1) ? 20 + 10 : ((choice == 2) ? 5 + 10 : 10 + 10),
+    rand() % (choice == 1) ? 10 + 10 : ((choice == 2) ? 10 + 10 : 20 + 10),
+    rand() % (choice == 1) ? 5 : ((choice == 2) ? 15  : 5)
+  };
+  static std::reference_wrapper<int> HumanVars[] = { atk, def, agi };
+  static std::reference_wrapper<int> MonsterVars[] = { monsterAtk, monsterDef, monsterAgi };
 
-static void adjustMonster(int choice) {
-  monsterAtk = rand() % (choice == 1) ? 20 + 10 : ((choice == 2) ? 5 + 10 : 10 + 10);
-  monsterDef = rand() % (choice == 1) ? 10 + 10 : ((choice == 2) ? 10 + 10 : 20 + 10);
-  monsterAgi = rand() % (choice == 1) ? 5 : ((choice == 2) ? 15  : 5);
+  if (HumanEntry == 1) {
+    for (auto &z : HumanVars) { z.get() = arr[x++]; }
+    return;
+  }
+  for (auto &z : MonsterVars) { z.get() = arr[x++]; }
 }
