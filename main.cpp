@@ -23,7 +23,7 @@ MA 02110-1301, USA.
 #include <cstring>
 #include <unistd.h>
 
-int mhp, hp, atk, def, matk, mdef, hurt, mhurt, agi, magi;
+int monsterHp, hp, atk, def, monsterAtk, monsterDef, hurt, monsterHurt, agi, monsterAgi;
 
 static void adjustHuman(int choice);
 static void adjustMonster(int choice);
@@ -34,18 +34,16 @@ int main(void) {
   atk = 10;
   def = 15;
   agi = 5;
-  matk = 10;
-  mdef = 15;
-  magi = 5;
+  monsterAtk = 10;
+  monsterDef = 15;
+  monsterAgi = 5;
 
   t = time(NULL);
-
   srandom((unsigned int)t ^ (unsigned int)getpid());
-  mhp = std::rand() % 50 + 60;
+  monsterHp = std::rand() % 50 + 60;
   hp = std::rand() % 20 + 80;
-  std::cout << "You start.\n==========\n" << std::flush;
 
-  while (hp > 0 || mhp > 0) {
+  while (hp > 0 || monsterHp > 0) {
     std::cout << "What do you want to do?\n1 - Normal Attack\n2 - Advanced Attack\n3 - Defensive moves\n" << std::flush;
     do {
       std::cin >> choice;
@@ -54,28 +52,28 @@ int main(void) {
     adjustHuman(choice);
     adjustMonster(std::rand() % 3);
 
-    mhurt = (atk - magi) - (mdef / atk);
-    if (mhurt < 0) {
-      mhurt = 0;
+    monsterHurt = (atk - monsterAgi) - (monsterDef / atk);
+    if (monsterHurt < 0) {
+      monsterHurt = 0;
     }
-    mhp -= mhurt;
-    std::cout << "You did " << mhurt << " damage to the monster!\n" << std::flush;
+    monsterHp -= monsterHurt;
+    std::cout << "You did " << monsterHurt << " damage to the monster!\n" << std::flush;
     std::cin.get();
-    if (mhp < 1) {
+    if (monsterHp < 1) {
       std::cout << "You killed the beast!! You won with " << hp << " hp left.\n" << std::flush;
       std::cin.get();
       return EXIT_SUCCESS;
     }
 
-    std::cout << "The monster now have " << mhp << " hp left.\n" << std::flush;
-    hurt = (matk - agi) - (def / matk);
+    std::cout << "The monster now have " << monsterHp << " hp left.\n" << std::flush;
+    hurt = (monsterAtk - agi) - (def / monsterAtk);
     if (hurt < 0) {
       hurt = 0;
     }
     hp -= hurt;
     std::cout << "The monster hit you for " << hurt << " damage.\n" << std::flush;
     if (hp < 1) {
-      std::cout << "You died. The beast still has " << mhp << " hp left.\n" << std::flush;
+      std::cout << "You died. The beast still has " << monsterHp << " hp left.\n" << std::flush;
       std::cin.get();
       return EXIT_SUCCESS;
     }
@@ -91,7 +89,7 @@ static void adjustHuman(int choice) {
 }
 
 static void adjustMonster(int choice) {
-  matk = rand() % (choice == 1) ? 20 + 10 : ((choice == 2) ? 5 + 10 : 10 + 10);
-  mdef = rand() % (choice == 1) ? 10 + 10 : ((choice == 2) ? 10 + 10 : 20 + 10);
-  magi = rand() % (choice == 1) ? 5 : ((choice == 2) ? 15  : 5);
+  monsterAtk = rand() % (choice == 1) ? 20 + 10 : ((choice == 2) ? 5 + 10 : 10 + 10);
+  monsterDef = rand() % (choice == 1) ? 10 + 10 : ((choice == 2) ? 10 + 10 : 20 + 10);
+  monsterAgi = rand() % (choice == 1) ? 5 : ((choice == 2) ? 15  : 5);
 }
