@@ -51,15 +51,12 @@ int main(void) {
     adjustHumanAndMonster(std::rand() % 3, 0);
 
     monsterHurt = (atk - monsterAgi) - (monsterDef / atk);
-    if (monsterHurt < 0) {
-      monsterHurt = 0;
-    }
+    if (monsterHurt < 0) { monsterHurt = 0; }
     monsterHp -= monsterHurt;
     std::cout << "You did " << monsterHurt << " damage to the monster!\n" << std::flush;
     std::cin.get();
     if (monsterHp < 1) {
       std::cout << "You killed the beast!! You won with " << hp << " hp left.\n" << std::flush;
-      std::cin.get();
       return EXIT_SUCCESS;
     }
 
@@ -70,7 +67,6 @@ int main(void) {
     std::cout << "The monster hit you for " << hurt << " damage.\n" << std::flush;
     if (hp < 1) {
       std::cout << "You died. The beast still has " << monsterHp << " hp left.\n" << std::flush;
-      std::cin.get();
       return EXIT_SUCCESS;
     }
     std::cout << "You now have " << hp << " hp left.\n\n" << std::flush;
