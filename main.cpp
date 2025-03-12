@@ -18,15 +18,12 @@ MA 02110-1301, USA.
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include <cstdlib>
-#include <string>
-#include <cstring>
 #include <unistd.h>
 #include <functional>
 
-int monsterHp, hp, atk, def, monsterAtk, monsterDef, hurt, monsterHurt, agi, monsterAgi;
+static void adjustHumanAndMonster(int choice, int firstEntry);
 
-static void adjustHumanAndMonster(int choice, int HumanEntry);
+int monsterHp, hp, atk, def, monsterAtk, monsterDef, hurt, monsterHurt, agi, monsterAgi;
 
 int main(void) {
   time_t t;
@@ -54,7 +51,6 @@ int main(void) {
     if (monsterHurt < 0) { monsterHurt = 0; }
     monsterHp -= monsterHurt;
     std::cout << "You did " << monsterHurt << " damage to the monster!\n" << std::flush;
-    std::cin.get();
     if (monsterHp < 1) {
       std::cout << "You killed the beast!! You won with " << hp << " hp left.\n" << std::flush;
       return EXIT_SUCCESS;
