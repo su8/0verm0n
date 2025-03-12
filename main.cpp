@@ -21,7 +21,7 @@ MA 02110-1301, USA.
 #include <unistd.h>
 #include <functional>
 
-static void adjustHumanAndMonster(int choice, int firstEntry);
+static void adjustHumanAndMonster(int choice, int HumanEntry);
 
 int monsterHp, hp, atk, def, monsterAtk, monsterDef, hurt, monsterHurt, agi, monsterAgi;
 
