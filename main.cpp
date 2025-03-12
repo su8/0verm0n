@@ -52,7 +52,7 @@ int main(void) {
     monsterHp -= monsterHurt;
     std::cout << "You did \033[1;33m" << monsterHurt << " \033[0;0mdamage to the monster!\n" << std::flush;
     if (monsterHp < 1) {
-      std::cout << "\033[1;32mYou killed the beast!!\033[0;0m You won with \033[1;32m" << hp << " \033[0;0mdhp left.\n" << std::flush;
+      std::cout << "\033[1;32mYou killed the beast!!\033[0;0m You won with \033[1;32m" << hp << " \033[0;0mhp left.\n" << std::flush;
       return EXIT_SUCCESS;
     }
 
