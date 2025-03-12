@@ -1,7 +1,7 @@
 # 0verm0n
 Small c++ game in under 100 Lines Of Code
 
-![](1pic.png)
+![](1snap.png)
 
 # Compile
 
