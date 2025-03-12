@@ -72,9 +72,9 @@ In [Visual Studio Code Editor](https://code.visualstudio.com/download), go to **
 }
 ```
 
-To compile the game press **CTRL** + **SHIFT** + **B** , then from the same folder start the `0verm0n.bat` script.
+### To compile the game press **CTRL** + **SHIFT** + **B** , then from the same folder start the `0verm0n.bat` script.
 
-Optioanlly if you want to play the game from text editor console -- wait until it compiles, after that press **CTRL** + **\`** and paste this `cp -r C:\Users\YOUR_USERNAME_GOES_HERE\Desktop\main.exe C:\MingW\bin;cd C:\MingW\bin;.\main.exe`
+Optioanlly if you want to play the game from VSCode's console -- wait until it compiles, after that press **CTRL** + **\`** and paste this `cp -r C:\Users\YOUR_USERNAME_GOES_HERE\Desktop\main.exe C:\MingW\bin;cd C:\MingW\bin;.\main.exe`
 
 ---
 
