@@ -41,7 +41,7 @@ int main(void) {
   hp = std::rand() % 20 + 80;
 
   while (hp > 0 || monsterHp > 0) {
-    std::cout << "What do you want to do?\n1 - Normal Attack\n2 - Defensive moves\n" << std::flush;
+    std::cout << "What do you want to do?\n1 - \033[1;34mNormal Attack\033[0;0m\n2 - \033[1;32mDefensive moves\033[0;0m\n" << std::flush;
     do { std::cin >> choice; } while (choice > 2 || choice < 1);
 
     adjustHumanAndMonster(choice, 1);
@@ -60,7 +60,7 @@ int main(void) {
     hurt = (monsterAtk - agi) - (def / monsterAtk);
     if (hurt < 0) { hurt = 0; }
     hp -= hurt;
-    std::cout << "The monster hit you for " << hurt << " damage.\n" << std::flush;
+    std::cout << "The monster hit you for \033[1;33m" << hurt << " \033[0;0mdamage.\n" << std::flush;
     if (hp < 1) {
       std::cout << "\033[1;31mYou died\033[0;0m. The beast still has \033[1;31m" << monsterHp << " \033[0;0mhp left.\n" << std::flush;
       return EXIT_SUCCESS;
