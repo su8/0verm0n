@@ -79,7 +79,7 @@ int main(void) {
 static void adjustHumanAndMonster(int choice, int HumanEntry) {
   int x = 0;
   int arr[] = {
-    std::rand() % (choice == 1) ? 20 + 10 : ((choice == 2) ? 5 + 10 : 10 + 10),
+    std::rand() % 20 + 10,
     std::rand() % (choice == 1) ? 10 + 10 : ((choice == 2) ? 10 + 10 : 20 + 10),
     std::rand() % (choice == 1) ? 5 : ((choice == 2) ? 15  : 5)
   };
