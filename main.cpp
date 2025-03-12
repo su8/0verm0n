@@ -48,7 +48,7 @@ int main(void) {
 
   while (hp > 0 || monsterHp > 0) {
     std::cout << "What do you want to do?\n1 - \033[1;34mNormal Attack\033[0;0m\n2 - \033[1;33mAdvanced Attack\033[0;0m\n3 - \033[1;32mDefensive moves\033[0;0m\n" << std::flush;
-    do { std::cin >> str; choice = static_cast<int>(strtol(str.c_str(), static_cast<char **>(NULL), 10)); } while (choice > 3 || choice < 1);
+    do { std::cin >> str; choice = static_cast<int>(std::strtol(str.c_str(), static_cast<char **>(NULL), 10)); } while (choice > 3 || choice < 1);
 
     adjustHumanAndMonster(choice, 1);
     adjustHumanAndMonster(std::rand() % 3, 0);
