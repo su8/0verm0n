@@ -38,7 +38,11 @@ int main(void) {
   monsterAgi = 5;
 
   t = time(NULL);
+#ifdef _WIN32
+  srand(t);
+#else
   srandom(static_cast<unsigned int>(t) ^ static_cast<unsigned int>(getpid()));
+#endif /*_WIN32 */
   monsterHp = std::rand() % 50 + 60;
   hp = std::rand() % 20 + 80;
 
