@@ -41,31 +41,31 @@ int main(void) {
   hp = std::rand() % 20 + 80;
 
   while (hp > 0 || monsterHp > 0) {
-    std::cout << "What do you want to do?\n1 - Normal Attack\n2 - Advanced Attack\n3 - Defensive moves\n" << std::flush;
-    do { std::cin >> choice; } while (choice > 3 || choice < 1);
+    std::cout << "What do you want to do?\n1 - Normal Attack\n2 - Defensive moves\n" << std::flush;
+    do { std::cin >> choice; } while (choice > 2 || choice < 1);
 
     adjustHumanAndMonster(choice, 1);
-    adjustHumanAndMonster(std::rand() % 3, 0);
+    adjustHumanAndMonster(std::rand() % 2, 0);
 
     monsterHurt = (atk - monsterAgi) - (monsterDef / atk);
     if (monsterHurt < 0) { monsterHurt = 0; }
     monsterHp -= monsterHurt;
-    std::cout << "You did " << monsterHurt << " damage to the monster!\n" << std::flush;
+    std::cout << "You did \033[1;33m" << monsterHurt << " \033[0;0mdamage to the monster!\n" << std::flush;
     if (monsterHp < 1) {
-      std::cout << "You killed the beast!! You won with " << hp << " hp left.\n" << std::flush;
+      std::cout << "\033[1;32mYou killed the beast!!\033[0;0m You won with \033[1;32m" << hp << " \033[0;0mdhp left.\n" << std::flush;
       return EXIT_SUCCESS;
     }
 
-    std::cout << "The monster now have " << monsterHp << " hp left.\n" << std::flush;
+    std::cout << "The monster now have \033[1;31m" << monsterHp << " \033[0;0mhp left.\n" << std::flush;
     hurt = (monsterAtk - agi) - (def / monsterAtk);
     if (hurt < 0) { hurt = 0; }
     hp -= hurt;
     std::cout << "The monster hit you for " << hurt << " damage.\n" << std::flush;
     if (hp < 1) {
-      std::cout << "You died. The beast still has " << monsterHp << " hp left.\n" << std::flush;
+      std::cout << "\033[1;31mYou died\033[0;0m. The beast still has \033[1;31m" << monsterHp << " \033[0;0mhp left.\n" << std::flush;
       return EXIT_SUCCESS;
     }
-    std::cout << "You now have " << hp << " hp left.\n\n" << std::flush;
+    std::cout << "You now have \033[1;32m" << hp << " \033[0;0mhp left.\n\n" << std::flush;
   }
   return EXIT_SUCCESS;
 }
@@ -73,9 +73,9 @@ int main(void) {
 static void adjustHumanAndMonster(int choice, int HumanEntry) {
   int x = 0;
   static int arr[] = {
-    std::rand() % (choice == 1) ? 20 + 10 : ((choice == 2) ? 5 + 10 : 10 + 10),
-    std::rand() % (choice == 1) ? 10 + 10 : ((choice == 2) ? 10 + 10 : 20 + 10),
-    std::rand() % (choice == 1) ? 5 : ((choice == 2) ? 15  : 5)
+    std::rand() % (choice == 1) ? 20 + 10 : 10 + 10,
+    std::rand() % (choice == 1) ? 10 + 10 : 20 + 10,
+    std::rand() % 5
   };
   static std::reference_wrapper<int> HumanVars[] = { atk, def, agi };
   static std::reference_wrapper<int> MonsterVars[] = { monsterAtk, monsterDef, monsterAgi };
