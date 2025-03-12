@@ -23,7 +23,6 @@ MA 02110-1301, USA.
 #include <string>
 
 static void adjustHumanAndMonster(int choice, int HumanEntry);
-
 int monsterHp, hp, atk, def, monsterAtk, monsterDef, hurt, monsterHurt, agi, monsterAgi;
 
 int main(void) {
@@ -48,7 +47,10 @@ int main(void) {
 
   while (hp > 0 || monsterHp > 0) {
     std::cout << "What do you want to do?\n1 - \033[1;34mNormal Attack\033[0;0m\n2 - \033[1;33mAdvanced Attack\033[0;0m\n3 - \033[1;32mDefensive moves\033[0;0m\n" << std::flush;
-    do { std::cin >> str; choice = static_cast<int>(std::strtol(str.c_str(), static_cast<char **>(NULL), 10)); } while (choice > 3 || choice < 1);
+    do {
+      std::cin >> str;
+      choice = static_cast<int>(std::strtol(str.c_str(), static_cast<char **>(NULL), 10));
+    } while (choice > 3 || choice < 1);
 
     adjustHumanAndMonster(choice, 1);
     adjustHumanAndMonster(std::rand() % 3, 0);
@@ -61,8 +63,8 @@ int main(void) {
       std::cout << "\033[1;32mYou killed the beast!!\033[0;0m You won with \033[1;32m" << hp << " \033[0;0mhp left.\n" << std::flush;
       return EXIT_SUCCESS;
     }
-
     std::cout << "The monster now have \033[1;31m" << monsterHp << " \033[0;0mhp left.\n" << std::flush;
+
     hurt = (monsterAtk - agi) - (def / monsterAtk);
     if (hurt < 0) { hurt = 0; }
     hp -= hurt;
