@@ -1,4 +1,4 @@
-# 0verm0n
+# 0verm0n  [![C/C++ CI](https://github.com/su8/0verm0n/actions/workflows/c-cpp.yml/badge.svg?branch=main)](https://github.com/su8/0verm0n/actions/workflows/c-cpp.yml)
 Small c++ game in under 100 Lines Of Code
 
 ![](1pic.png)
