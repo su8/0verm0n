@@ -36,9 +36,9 @@ int main(void) {
   monsterDef = 15;
   monsterAgi = 5;
 
-  t = time(NULL);
+  t = std::time(0);
 #ifdef _WIN32
-  srand(t);
+  std::srand(t);
 #else
   srandom(static_cast<unsigned int>(t) ^ static_cast<unsigned int>(getpid()));
 #endif /*_WIN32 */
