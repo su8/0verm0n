@@ -45,7 +45,7 @@ int main(void) {
   monsterHp = std::rand() % 50 + 60;
   hp = std::rand() % 20 + 80;
 
-  while (hp > 0 || monsterHp > 0) {
+  while (hp > 0 && monsterHp > 0) {
     std::cout << "What do you want to do?\n1 - \033[1;34mNormal Attack\033[0;0m\n2 - \033[1;33mAdvanced Attack\033[0;0m\n3 - \033[1;32mDefensive moves\033[0;0m\n" << std::flush;
     do {
       std::cin >> str;
@@ -53,9 +53,9 @@ int main(void) {
     } while (choice > 3 || choice < 1);
 
     adjustHumanAndMonster(choice, 1);
-    adjustHumanAndMonster(std::rand() % 3, 0);
+    adjustHumanAndMonster(std::rand() % 3 + 1, 0);
 
-    monsterHurt = (atk - monsterAgi) - (monsterDef / atk);
+    monsterHurt = std::max(1, atk + (std::rand() % 6) - monsterDef / 2);
     if (monsterHurt < 0) { monsterHurt = 0; }
     monsterHp -= monsterHurt;
     std::cout << "You did \033[1;33m" << monsterHurt << " \033[0;0mdamage to the monster!\n" << std::flush;
